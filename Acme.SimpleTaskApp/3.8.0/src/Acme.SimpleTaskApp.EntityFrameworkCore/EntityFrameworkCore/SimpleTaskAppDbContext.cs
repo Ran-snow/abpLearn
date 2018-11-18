@@ -1,4 +1,5 @@
 ﻿using Abp.EntityFrameworkCore;
+using Acme.SimpleTaskApp.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Acme.SimpleTaskApp.EntityFrameworkCore
@@ -7,7 +8,9 @@ namespace Acme.SimpleTaskApp.EntityFrameworkCore
     {
         //Add DbSet properties for your entities...
 
-        public SimpleTaskAppDbContext(DbContextOptions<SimpleTaskAppDbContext> options) 
+        public DbSet<Task> Tasks { get; set; }
+
+        public SimpleTaskAppDbContext(DbContextOptions<SimpleTaskAppDbContext> options)
             : base(options)
         {
 
