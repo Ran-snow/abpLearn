@@ -13,7 +13,7 @@ namespace Acme.SimpleTaskApp.Web.Startup
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseUrls("http://+:80")
-                .Build();
+                .Build();//
 
             host.Run();
         }
