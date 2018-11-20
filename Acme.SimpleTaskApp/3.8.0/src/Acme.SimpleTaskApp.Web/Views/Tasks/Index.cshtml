@@ -6,6 +6,19 @@
 }
 
 <h2>@L("TaskList")</h2>
+<h2>
+    @L("TaskList")
+    <span class="pull-right">
+        @Html.DropDownListFor(
+           model => model.SelectedTaskState,
+           Model.GetTasksStateSelectListItems(LocalizationManager),
+           new
+           {
+               @class = "form-control",
+               id = "TaskStateCombobox"
+           })
+    </span>
+</h2>
 
 <div class="row">
     <div>
@@ -21,7 +34,16 @@
                 </li>
             }
         </ul>
-        @*https://aspnetboilerplate.com/Pages/Documents/Articles/Introduction-With-AspNet-Core-And-Entity-Framework-Core-Part-1/index.html#ArticleTaskAppService*@
-        @*Filtering Tasks*@
     </div>
 </div>
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/js/views/tasks/index.js"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/js/views/tasks/index.min.js"></script>
+    </environment>
+}

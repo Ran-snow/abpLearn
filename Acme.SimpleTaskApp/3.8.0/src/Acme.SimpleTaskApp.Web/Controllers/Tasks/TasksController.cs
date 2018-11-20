@@ -21,8 +21,13 @@ namespace Acme.SimpleTaskApp.Web.Controllers.Tasks
         public async Task<ActionResult> Index(GetAllTasksInput input)
         {
             var output = await _taskAppService.GetAll(input);
-            var model = new IndexViewModel(output.Items);
+            var model = new IndexViewModel(output.Items)
+            {
+                SelectedTaskState = input.State
+            };
             return View(model);
         }
+
+        //https://aspnetboilerplate.com/Pages/Articles/Introduction-With-AspNet-Core-And-Entity-Framework-Core-Part-2/index.html
     }
 }

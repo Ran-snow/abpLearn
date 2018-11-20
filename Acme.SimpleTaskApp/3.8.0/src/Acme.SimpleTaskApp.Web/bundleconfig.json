@@ -36,5 +36,11 @@
       "wwwroot/lib/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
       "wwwroot/lib/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/Tasks/index.min.js",
+    "inputFiles": [
+      "wwwroot/Tasks/index.js"
+    ]
   }
 ]
