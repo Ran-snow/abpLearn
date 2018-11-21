@@ -15,10 +15,16 @@ namespace Acme.SimpleTaskApp.Tests.TestDatas
         public void Build()
         {
             //create test data here...
+
+            var neo = new Person("Neo");
+            _context.People.Add(neo);
+
             _context.Tasks.AddRange(
-            new Task("Follow the white rabbit", "Follow the white rabbit in order to know the reality."),
+            new Task("Follow the white rabbit", "Follow the white rabbit in order to know the reality.", neo.Id),
             new Task("Clean your room") { State = TaskState.Completed }
             );
+
+            _context.SaveChanges();
         }
     }
 }

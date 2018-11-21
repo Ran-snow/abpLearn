@@ -1,7 +1,10 @@
-﻿using Acme.SimpleTaskApp.Tasks;
+﻿using Abp.Application.Services.Dto;
+using Acme.SimpleTaskApp.Tasks;
 using Acme.SimpleTaskApp.Tasks.DTOs;
+using Acme.SimpleTaskApp.Tasks.Interface;
 using Acme.SimpleTaskApp.Web.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +15,13 @@ namespace Acme.SimpleTaskApp.Web.Controllers.Tasks
     public class TasksController : SimpleTaskAppControllerBase
     {
         private readonly ITaskAppService _taskAppService;
+        private readonly ILookupAppService _lookupAppService;
 
-        public TasksController(ITaskAppService taskAppService)
+        public TasksController(ITaskAppService taskAppService,
+            ILookupAppService lookupAppService)
         {
             _taskAppService = taskAppService;
+            _lookupAppService = lookupAppService;
         }
 
         public async Task<ActionResult> Index(GetAllTasksInput input)
@@ -28,6 +34,16 @@ namespace Acme.SimpleTaskApp.Web.Controllers.Tasks
             return View(model);
         }
 
-        //https://aspnetboilerplate.com/Pages/Articles/Introduction-With-AspNet-Core-And-Entity-Framework-Core-Part-2/index.html
+        public async Task<ActionResult> Create()
+        {
+            ListResultDto<ComboboxItemDto> listResultDto = await _lookupAppService.GetPeopleComboboxItems();
+            var peopleSelectListItems = listResultDto.Items
+                .Select(p => p.ToSelectListItem())
+                .ToList();
+
+            peopleSelectListItems.Insert(0, new SelectListItem { Value = string.Empty, Text = L("Unassigned"), Selected = true });
+
+            return View(new CreateTaskViewModel(peopleSelectListItems));
+        }
     }
 }

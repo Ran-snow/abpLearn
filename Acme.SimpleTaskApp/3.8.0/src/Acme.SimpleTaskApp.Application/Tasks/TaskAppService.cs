@@ -5,6 +5,7 @@ using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Acme.SimpleTaskApp.Tasks.DTOs;
+using Acme.SimpleTaskApp.Tasks.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace Acme.SimpleTaskApp.Tasks
@@ -17,10 +18,18 @@ namespace Acme.SimpleTaskApp.Tasks
         {
             _taskRepository = taskRepository;
         }
+
+        public async System.Threading.Tasks.Task Create(CreateTaskInput input)
+        {
+            var task = ObjectMapper.Map<Task>(input);
+            await _taskRepository.InsertAsync(task);
+        }
+
         public async Task<ListResultDto<TaskListDto>> GetAll(GetAllTasksInput input)
         {
             var tasks = await _taskRepository
                 .GetAll()
+                .Include(t => t.AssignedPerson)
                 .WhereIf(input.State.HasValue, t => t.State == input.State.Value)
                 .OrderByDescending(t => t.CreationTime)
                 .ToListAsync();

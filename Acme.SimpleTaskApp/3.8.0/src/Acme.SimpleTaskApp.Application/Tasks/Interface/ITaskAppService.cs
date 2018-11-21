@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acme.SimpleTaskApp.Tasks
+namespace Acme.SimpleTaskApp.Tasks.Interface
 {
     public interface ITaskAppService : IApplicationService
     {
         Task<ListResultDto<TaskListDto>> GetAll(GetAllTasksInput input);
+
+        System.Threading.Tasks.Task Create(CreateTaskInput input);
     }
 }

@@ -42,5 +42,11 @@
     "inputFiles": [
       "wwwroot/Tasks/index.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/Tasks/create.min.js",
+    "inputFiles": [
+      "wwwroot/Tasks/create.js"
+    ]
   }
 ]

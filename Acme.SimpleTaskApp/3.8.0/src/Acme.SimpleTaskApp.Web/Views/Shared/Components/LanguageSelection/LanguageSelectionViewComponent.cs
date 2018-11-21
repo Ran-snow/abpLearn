@@ -13,7 +13,7 @@ namespace Acme.SimpleTaskApp.Web.Views.Shared.Components.LanguageSelection
             _languageManager = languageManager;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
             var model = new LanguageSelectionViewModel
             {

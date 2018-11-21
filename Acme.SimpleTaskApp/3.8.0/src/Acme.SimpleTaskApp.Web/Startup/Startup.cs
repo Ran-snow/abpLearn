@@ -1,5 +1,4 @@
-﻿using System;
-using Abp.AspNetCore;
+﻿using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
 using Acme.SimpleTaskApp.EntityFrameworkCore;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Acme.SimpleTaskApp.Web.Startup
 {
