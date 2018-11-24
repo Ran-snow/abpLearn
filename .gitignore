@@ -403,4 +403,4 @@ ASALocalRun/
 /HealthStory/aspnet-core/src/HealthStory.Web.Host/appsettings.Development.json
 /HealthStory/aspnet-core/src/HealthStory.Web.Host/appsettings.Staging.json
 /HealthStory/aspnet-core/src/HealthStory.Web.Host/appsettings.json
-/HealthStory/aspnet-core/src/HealthStory.Web.Host/App_date/Logs
+/HealthStory/aspnet-core/src/HealthStory.Web.Host/App_Data/Logs
