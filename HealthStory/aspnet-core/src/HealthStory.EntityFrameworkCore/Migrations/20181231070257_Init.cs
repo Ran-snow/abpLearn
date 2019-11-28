@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HealthStory.Migrations
 {
-    public partial class AbpZero_Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -372,6 +372,27 @@ namespace HealthStory.Migrations
                         principalTable: "AbpUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "h_patient",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    PatientName = table.Column<string>(maxLength: 20, nullable: false),
+                    Phone = table.Column<string>(maxLength: 11, nullable: false),
+                    IDCard = table.Column<string>(maxLength: 18, nullable: false),
+                    People = table.Column<string>(maxLength: 20, nullable: true),
+                    Address = table.Column<string>(maxLength: 200, nullable: true),
+                    Hometown = table.Column<string>(maxLength: 200, nullable: true),
+                    BodyHeight = table.Column<double>(nullable: false),
+                    BodyWeight = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_h_patient", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -1083,6 +1104,9 @@ namespace HealthStory.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "h_patient");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");

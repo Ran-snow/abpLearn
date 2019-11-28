@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthStory.Migrations
 {
     [DbContext(typeof(HealthStoryDbContext))]
-    [Migration("20181124151218_AbpZero_Initial")]
-    partial class AbpZero_Initial
+    [Migration("20181231070257_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -885,6 +885,43 @@ namespace HealthStory.Migrations
                     b.HasIndex("TenantId", "NormalizedName");
 
                     b.ToTable("AbpRoles");
+                });
+
+            modelBuilder.Entity("HealthStory.Authorization.Users.Patient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(200);
+
+                    b.Property<double>("BodyHeight");
+
+                    b.Property<double>("BodyWeight");
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<string>("Hometown")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("IDCard")
+                        .IsRequired()
+                        .HasMaxLength(18);
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("People")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(11);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("h_patient");
                 });
 
             modelBuilder.Entity("HealthStory.Authorization.Users.User", b =>

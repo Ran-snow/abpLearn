@@ -885,6 +885,41 @@ namespace HealthStory.Migrations
                     b.ToTable("AbpRoles");
                 });
 
+            modelBuilder.Entity("HealthStory.Authorization.Users.Patient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(200);
+
+                    b.Property<double>("BodyHeight");
+
+                    b.Property<double>("BodyWeight");
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<string>("Hometown")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("IDCard")
+                        .HasMaxLength(18);
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("People")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(11);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("h_patient");
+                });
+
             modelBuilder.Entity("HealthStory.Authorization.Users.User", b =>
                 {
                     b.Property<long>("Id")
